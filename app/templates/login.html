@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="text-center container">
+    <form class="form-signin" method="post" novalidate>
+
+        <img class="mb-4" src="{{ url_for('static', filename='img/compass.svg') }}" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Пожалуйста, войдите, чтобы продолжить</h1>
+
+        {{ form.username(class="form-control", placeholder="Имя пользователя") }}
+        {{ form.hidden_tag() }}
+        {% for error in form.username.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+
+        {{ form.password(class="form-control", placeholder="Password") }}
+        {% for error in form.password.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+
+        <div class="checkbox mb-3">
+            {{ form.remember_me() }} {{ form.remember_me.label }}
+        </div>
+
+        {{ form.submit(class="btn btn-lg btn-success btn-block") }}
+        <p class="mt-5 mb-3 text-muted">© Est. 2020</p>
+    </form>
+
+
+    </section>
+{% endblock %}

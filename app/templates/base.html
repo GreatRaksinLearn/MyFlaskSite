@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
     <div class="container">
-        <a class="navbar-brand" href="/">ARCHITECT</a>
+        <a class="navbar-brand" href="{{ url_for('index') }}">ARCHITECT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Главная</a>
+                    <a class="nav-link" href="{{ url_for('index') }}">Главная</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('signIn') }}">Войти</a>
                 </li>
             </ul>
 
         </div>
     </div>
 </nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+</div>
 
 {% block content %}{% endblock %}
 
