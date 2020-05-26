@@ -1,6 +1,7 @@
 from app import App
+from flask import render_template
 
 
 @App.route('/')
 def index():
-    return '<h1>Привет, мир!</h1>'
+    return render_template('index.html', title='Главная страница')
