@@ -1,13 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
     <section class="text-center container">
-        <p>Новый пользователь? <a href="{{ url_for('signUp') }}">Зарегистрируйтесь</a>!</p>
     <form class="form-signin" method="post" novalidate>
         {{ form.hidden_tag() }}
 
         <img class="mb-4" src="{{ url_for('static', filename='img/compass.svg') }}" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Пожалуйста, войдите, чтобы продолжить</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Пожалуйста, зарегистрируйтесь!</h1>
 
         {{ form.username(class="form-control", placeholder="Имя пользователя") }}
 
@@ -17,16 +16,21 @@
         </div>
         {% endfor %}
 
-        {{ form.password(class="form-control", placeholder="Password") }}
-        {% for error in form.password.errors %}
+        {{ form.email(class="form-control", placeholder="Email") }}
+
+        {% for error in form.email.errors %}
         <div class="alert alert-danger" role="alert">
             {{ error }}
         </div>
         {% endfor %}
 
-        <div class="checkbox mb-3">
-            {{ form.remember_me() }} {{ form.remember_me.label }}
+        {{ form.password(class="form-control", placeholder="Пароль") }}
+        {{ form.password2(class="form-control", placeholder="Пароль (еще раз)") }}
+        {% for error in form.password.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
         </div>
+        {% endfor %}
 
         {{ form.submit(class="btn btn-lg btn-success btn-block") }}
         <p class="mt-5 mb-3 text-muted">© Est. 2020</p>
